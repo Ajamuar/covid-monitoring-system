@@ -1,0 +1,31 @@
+.global-stats-container {
+  border: 1px solid gray;
+  border-radius: 10px;
+  background-color: #05445e;
+  color: white;
+}
+
+.stats {
+  justify-content: center;
+  display: flex;
+}
+
+.main-stat {
+  margin-bottom: 0px;
+}
+
+.divided-stats-section {
+  margin: 0px 32px 0px 32px;
+}
+
+.good-news {
+  color: aquamarine;
+}
+
+.bad-news {
+  color: crimson;
+}
+
+.main-news {
+  font-size: x-large;
+}
