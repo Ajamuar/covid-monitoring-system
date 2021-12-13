@@ -44,7 +44,7 @@ function App() {
       {covidData ? (
         <>
           <GlobalStats globalStats={covidData.Global} />
-          <CountryStats />
+          <CountryStats countryArray={covidData.Countries} />
         </>
       ) : null}
     </div>
