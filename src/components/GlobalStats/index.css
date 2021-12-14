@@ -3,6 +3,7 @@
   border-radius: 10px;
   background-color: #05445e;
   color: white;
+  position: relative;
 }
 
 .stats {
@@ -28,4 +29,22 @@
 
 .main-news {
   font-size: x-large;
+}
+
+.refresh-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+}
+
+.refresh-icon:hover {
+  background-color: #189ab4;
+}
+
+.refresh-icon:active {
+  background-color: #0e5c6b;
 }

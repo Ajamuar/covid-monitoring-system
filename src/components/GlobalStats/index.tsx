@@ -1,7 +1,15 @@
-import IGlobal from "../../types/IGlobal";
 import "./index.css";
+import IGlobal from "../../types/IGlobal";
 
-const GlobalStats = ({ globalStats }: { globalStats: IGlobal | undefined }) => {
+import { BiRefresh } from "react-icons/bi";
+
+const GlobalStats = ({
+  globalStats,
+  fetchCovidData,
+}: {
+  globalStats: IGlobal | undefined;
+  fetchCovidData: () => void;
+}) => {
   return (
     <div className="global-stats-container">
       <h1 className="stats main-stat">
@@ -31,6 +39,10 @@ const GlobalStats = ({ globalStats }: { globalStats: IGlobal | undefined }) => {
           </h2>
         </div>
       </div>
+
+      <span className="refresh-icon" onClick={() => fetchCovidData()}>
+        <BiRefresh size={"24px"} />
+      </span>
     </div>
   );
 };

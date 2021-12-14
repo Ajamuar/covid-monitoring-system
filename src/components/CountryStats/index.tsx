@@ -10,6 +10,7 @@ const CountryStats = ({ countryArray }: { countryArray: Array<ICountry> }) => {
     "Ascending"
   );
 
+  // Sorted array according to current states
   const sortedArray = useMemo(() => {
     return [...countryArray].sort(function (
       country1: ICountry,
@@ -24,11 +25,19 @@ const CountryStats = ({ countryArray }: { countryArray: Array<ICountry> }) => {
     });
   }, [countryArray, sortingColumnName, sortingOrder]);
 
+  /**
+   * Toggles the current sorting order between `Ascending` and `Descending`
+   */
   const toggleSortingOrder = () => {
     if (sortingOrder === "Ascending") setSortingOrder("Descending");
     else setSortingOrder("Ascending");
   };
 
+  /**
+   * Sets the sorting order according to the property pas
+   *
+   * @param propertyName keyof ICountry
+   */
   const setSorting = (propertyName: keyof ICountry) => {
     if (sortingColumnName === propertyName) toggleSortingOrder();
     else {

@@ -43,7 +43,10 @@ function App() {
     <div className="App">
       {covidData ? (
         <>
-          <GlobalStats globalStats={covidData.Global} />
+          <GlobalStats
+            globalStats={covidData.Global}
+            fetchCovidData={fetchCovidData}
+          />
           <CountryStats countryArray={covidData.Countries} />
         </>
       ) : null}
