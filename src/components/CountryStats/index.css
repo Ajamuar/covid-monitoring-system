@@ -26,3 +26,16 @@
   background-color: #05445e;
   color: white;
 }
+
+#countries th:hover .sort-icon {
+  visibility: visible;
+}
+
+.th-spacer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sort-icon {
+  visibility: hidden;
+}
