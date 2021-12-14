@@ -48,3 +48,13 @@
 .refresh-icon:active {
   background-color: #0e5c6b;
 }
+
+@media only screen and (max-width: 992px) {
+  h1 {
+    font-size: x-large;
+  }
+
+  h2 {
+    font-size: larger;
+  }
+}

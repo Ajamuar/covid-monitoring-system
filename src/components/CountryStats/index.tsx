@@ -72,104 +72,106 @@ const CountryStats = ({ countryArray }: { countryArray: Array<ICountry> }) => {
           }}
         />
       </div>
-      <table id="countries">
-        <thead>
-          <tr>
-            <th>
-              <div className="th-spacer">
-                Name{" "}
-                <span
-                  className="sort-icon"
-                  onClick={() => setSorting("Country")}
-                >
-                  <BiSortAlt2 />
-                </span>
-              </div>
-            </th>
-            <th>
-              <div className="th-spacer">
-                New Confirmed{" "}
-                <span
-                  className="sort-icon"
-                  onClick={() => setSorting("NewConfirmed")}
-                >
-                  <BiSortAlt2 />
-                </span>
-              </div>
-            </th>
-            <th>
-              <div className="th-spacer">
-                Total Confirmed{" "}
-                <span
-                  className="sort-icon"
-                  onClick={() => setSorting("TotalConfirmed")}
-                >
-                  <BiSortAlt2 />
-                </span>
-              </div>
-            </th>
-            <th>
-              <div className="th-spacer">
-                New Deaths{" "}
-                <span
-                  className="sort-icon"
-                  onClick={() => setSorting("NewDeaths")}
-                >
-                  <BiSortAlt2 />
-                </span>
-              </div>
-            </th>
-            <th>
-              <div className="th-spacer">
-                Total Deaths{" "}
-                <span
-                  className="sort-icon"
-                  onClick={() => setSorting("TotalDeaths")}
-                >
-                  <BiSortAlt2 />
-                </span>
-              </div>
-            </th>
-            <th>
-              <div className="th-spacer">
-                New Recovered{" "}
-                <span
-                  className="sort-icon"
-                  onClick={() => setSorting("NewRecovered")}
-                >
-                  <BiSortAlt2 />
-                </span>
-              </div>
-            </th>
-            <th>
-              <div className="th-spacer">
-                Total Recovered{" "}
-                <span
-                  className="sort-icon"
-                  onClick={() => setSorting("TotalRecovered")}
-                >
-                  <BiSortAlt2 />
-                </span>
-              </div>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredArray.map((country) => {
-            return (
-              <tr key={country.Country}>
-                <td>{country.Country}</td>
-                <td>{country.NewConfirmed}</td>
-                <td>{country.TotalConfirmed}</td>
-                <td>{country.NewDeaths}</td>
-                <td>{country.TotalDeaths}</td>
-                <td>{country.NewRecovered}</td>
-                <td>{country.TotalRecovered}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+      <div className="table-container">
+        <table id="countries">
+          <thead>
+            <tr>
+              <th>
+                <div className="th-spacer">
+                  Name{" "}
+                  <span
+                    className="sort-icon"
+                    onClick={() => setSorting("Country")}
+                  >
+                    <BiSortAlt2 />
+                  </span>
+                </div>
+              </th>
+              <th>
+                <div className="th-spacer">
+                  New Confirmed{" "}
+                  <span
+                    className="sort-icon"
+                    onClick={() => setSorting("NewConfirmed")}
+                  >
+                    <BiSortAlt2 />
+                  </span>
+                </div>
+              </th>
+              <th>
+                <div className="th-spacer">
+                  Total Confirmed{" "}
+                  <span
+                    className="sort-icon"
+                    onClick={() => setSorting("TotalConfirmed")}
+                  >
+                    <BiSortAlt2 />
+                  </span>
+                </div>
+              </th>
+              <th>
+                <div className="th-spacer">
+                  New Deaths{" "}
+                  <span
+                    className="sort-icon"
+                    onClick={() => setSorting("NewDeaths")}
+                  >
+                    <BiSortAlt2 />
+                  </span>
+                </div>
+              </th>
+              <th>
+                <div className="th-spacer">
+                  Total Deaths{" "}
+                  <span
+                    className="sort-icon"
+                    onClick={() => setSorting("TotalDeaths")}
+                  >
+                    <BiSortAlt2 />
+                  </span>
+                </div>
+              </th>
+              <th>
+                <div className="th-spacer">
+                  New Recovered{" "}
+                  <span
+                    className="sort-icon"
+                    onClick={() => setSorting("NewRecovered")}
+                  >
+                    <BiSortAlt2 />
+                  </span>
+                </div>
+              </th>
+              <th>
+                <div className="th-spacer">
+                  Total Recovered{" "}
+                  <span
+                    className="sort-icon"
+                    onClick={() => setSorting("TotalRecovered")}
+                  >
+                    <BiSortAlt2 />
+                  </span>
+                </div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredArray.map((country) => {
+              return (
+                <tr key={country.Country}>
+                  <td>{country.Country}</td>
+                  <td>{country.NewConfirmed}</td>
+                  <td>{country.TotalConfirmed}</td>
+                  <td>{country.NewDeaths}</td>
+                  <td>{country.TotalDeaths}</td>
+                  <td>{country.NewRecovered}</td>
+                  <td>{country.TotalRecovered}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 };

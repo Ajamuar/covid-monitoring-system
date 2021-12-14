@@ -6,3 +6,9 @@ body {
   padding: 16px 64px 0px 64px;
   font-family: monospace;
 }
+
+@media only screen and (max-width: 992px) {
+  .App {
+    padding: 4px 4px 0px 4px;
+  }
+}

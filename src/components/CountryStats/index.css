@@ -1,3 +1,7 @@
+.table-container {
+  overflow-x: auto;
+}
+
 #countries {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
@@ -50,4 +54,16 @@
 
 .sort-icon {
   visibility: hidden;
+}
+
+@media only screen and (max-width: 480px) {
+  .search-row input {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .main-stat {
+    margin-top: 48px;
+  }
 }
