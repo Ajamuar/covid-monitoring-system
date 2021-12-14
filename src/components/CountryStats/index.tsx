@@ -9,6 +9,7 @@ const CountryStats = ({ countryArray }: { countryArray: Array<ICountry> }) => {
   const [sortingOrder, setSortingOrder] = useState<"Ascending" | "Descending">(
     "Ascending"
   );
+  const [searchText, setSearchText] = useState("");
 
   // Sorted array according to current states
   const sortedArray = useMemo(() => {
@@ -45,102 +46,131 @@ const CountryStats = ({ countryArray }: { countryArray: Array<ICountry> }) => {
     }
   };
 
+  const filteredArray = useMemo(() => {
+    return sortedArray.filter((country) => {
+      let searchTextInLowerCase = searchText.toLowerCase();
+      return (
+        country.Country.toLowerCase().includes(searchTextInLowerCase) ||
+        (country.TotalConfirmed + "").includes(searchTextInLowerCase) ||
+        (country.NewConfirmed + "").includes(searchTextInLowerCase) ||
+        (country.TotalRecovered + "").includes(searchTextInLowerCase) ||
+        (country.NewRecovered + "").includes(searchTextInLowerCase) ||
+        (country.TotalDeaths + "").includes(searchTextInLowerCase) ||
+        (country.NewDeaths + "").includes(searchTextInLowerCase)
+      );
+    });
+  }, [searchText, sortedArray]);
+
   return (
-    <table id="countries">
-      <thead>
-        <tr>
-          <th>
-            <div className="th-spacer">
-              Name{" "}
-              <span className="sort-icon" onClick={() => setSorting("Country")}>
-                <BiSortAlt2 />
-              </span>
-            </div>
-          </th>
-          <th>
-            <div className="th-spacer">
-              New Confirmed{" "}
-              <span
-                className="sort-icon"
-                onClick={() => setSorting("NewConfirmed")}
-              >
-                <BiSortAlt2 />
-              </span>
-            </div>
-          </th>
-          <th>
-            <div className="th-spacer">
-              Total Confirmed{" "}
-              <span
-                className="sort-icon"
-                onClick={() => setSorting("TotalConfirmed")}
-              >
-                <BiSortAlt2 />
-              </span>
-            </div>
-          </th>
-          <th>
-            <div className="th-spacer">
-              New Deaths{" "}
-              <span
-                className="sort-icon"
-                onClick={() => setSorting("NewDeaths")}
-              >
-                <BiSortAlt2 />
-              </span>
-            </div>
-          </th>
-          <th>
-            <div className="th-spacer">
-              Total Deaths{" "}
-              <span
-                className="sort-icon"
-                onClick={() => setSorting("TotalDeaths")}
-              >
-                <BiSortAlt2 />
-              </span>
-            </div>
-          </th>
-          <th>
-            <div className="th-spacer">
-              New Recovered{" "}
-              <span
-                className="sort-icon"
-                onClick={() => setSorting("NewRecovered")}
-              >
-                <BiSortAlt2 />
-              </span>
-            </div>
-          </th>
-          <th>
-            <div className="th-spacer">
-              Total Recovered{" "}
-              <span
-                className="sort-icon"
-                onClick={() => setSorting("TotalRecovered")}
-              >
-                <BiSortAlt2 />
-              </span>
-            </div>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        {sortedArray.map((country) => {
-          return (
-            <tr key={country.Country}>
-              <td>{country.Country}</td>
-              <td>{country.NewConfirmed}</td>
-              <td>{country.TotalConfirmed}</td>
-              <td>{country.NewDeaths}</td>
-              <td>{country.TotalDeaths}</td>
-              <td>{country.NewRecovered}</td>
-              <td>{country.TotalRecovered}</td>
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
+    <>
+      <div className="search-row">
+        <input
+          placeholder="Search"
+          value={searchText}
+          onChange={(event: React.FormEvent<HTMLInputElement>) => {
+            setSearchText((event.target as HTMLInputElement).value);
+          }}
+        />
+      </div>
+      <table id="countries">
+        <thead>
+          <tr>
+            <th>
+              <div className="th-spacer">
+                Name{" "}
+                <span
+                  className="sort-icon"
+                  onClick={() => setSorting("Country")}
+                >
+                  <BiSortAlt2 />
+                </span>
+              </div>
+            </th>
+            <th>
+              <div className="th-spacer">
+                New Confirmed{" "}
+                <span
+                  className="sort-icon"
+                  onClick={() => setSorting("NewConfirmed")}
+                >
+                  <BiSortAlt2 />
+                </span>
+              </div>
+            </th>
+            <th>
+              <div className="th-spacer">
+                Total Confirmed{" "}
+                <span
+                  className="sort-icon"
+                  onClick={() => setSorting("TotalConfirmed")}
+                >
+                  <BiSortAlt2 />
+                </span>
+              </div>
+            </th>
+            <th>
+              <div className="th-spacer">
+                New Deaths{" "}
+                <span
+                  className="sort-icon"
+                  onClick={() => setSorting("NewDeaths")}
+                >
+                  <BiSortAlt2 />
+                </span>
+              </div>
+            </th>
+            <th>
+              <div className="th-spacer">
+                Total Deaths{" "}
+                <span
+                  className="sort-icon"
+                  onClick={() => setSorting("TotalDeaths")}
+                >
+                  <BiSortAlt2 />
+                </span>
+              </div>
+            </th>
+            <th>
+              <div className="th-spacer">
+                New Recovered{" "}
+                <span
+                  className="sort-icon"
+                  onClick={() => setSorting("NewRecovered")}
+                >
+                  <BiSortAlt2 />
+                </span>
+              </div>
+            </th>
+            <th>
+              <div className="th-spacer">
+                Total Recovered{" "}
+                <span
+                  className="sort-icon"
+                  onClick={() => setSorting("TotalRecovered")}
+                >
+                  <BiSortAlt2 />
+                </span>
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredArray.map((country) => {
+            return (
+              <tr key={country.Country}>
+                <td>{country.Country}</td>
+                <td>{country.NewConfirmed}</td>
+                <td>{country.TotalConfirmed}</td>
+                <td>{country.NewDeaths}</td>
+                <td>{country.TotalDeaths}</td>
+                <td>{country.NewRecovered}</td>
+                <td>{country.TotalRecovered}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </>
   );
 };
 
