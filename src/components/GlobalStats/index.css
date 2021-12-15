@@ -49,6 +49,12 @@
   background-color: #0e5c6b;
 }
 
+.refresh-icon-svg {
+  animation-name: icon-spin;
+  animation-duration: 500ms;
+  animation-iteration-count: infinite;
+}
+
 @media only screen and (max-width: 992px) {
   h1 {
     font-size: x-large;
@@ -56,5 +62,14 @@
 
   h2 {
     font-size: larger;
+  }
+}
+
+@keyframes icon-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
   }
 }

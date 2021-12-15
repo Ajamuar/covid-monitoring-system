@@ -11,11 +11,12 @@ import ICovidData from "./types/ICovidData";
 
 function App() {
   const [covidData, setCovidData] = useState<ICovidData | null>(null);
+  const [firstLoad, setFirstLoad] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const fetchCovidData = () => {
-    setLoading(true);
+  const fetchCovidData = (first: boolean = false) => {
+    first ? setFirstLoad(true) : setLoading(true);
     getCovidData()
       .then((data: ICovidData) => {
         setCovidData(data);
@@ -25,15 +26,15 @@ function App() {
         setError(err);
       })
       .finally(() => {
-        setLoading(false);
+        first ? setFirstLoad(false) : setLoading(false);
       });
   };
 
   useEffect(() => {
-    fetchCovidData();
+    fetchCovidData(true);
   }, []);
 
-  if (loading) return <LoadingSpinner />;
+  if (firstLoad) return <LoadingSpinner />;
 
   if (error) {
     return <ErrorMessage />;
@@ -46,6 +47,7 @@ function App() {
           <GlobalStats
             globalStats={covidData.Global}
             fetchCovidData={fetchCovidData}
+            loading={loading}
           />
           <CountryStats countryArray={covidData.Countries} />
         </>

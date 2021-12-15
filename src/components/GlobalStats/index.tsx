@@ -6,9 +6,11 @@ import { BiRefresh } from "react-icons/bi";
 const GlobalStats = ({
   globalStats,
   fetchCovidData,
+  loading,
 }: {
   globalStats: IGlobal | undefined;
   fetchCovidData: () => void;
+  loading: boolean;
 }) => {
   return (
     <div className="global-stats-container">
@@ -41,7 +43,10 @@ const GlobalStats = ({
       </div>
 
       <span className="refresh-icon" onClick={() => fetchCovidData()}>
-        <BiRefresh size={"24px"} />
+        <BiRefresh
+          size={"24px"}
+          className={loading ? "refresh-icon-svg" : ""}
+        />
       </span>
     </div>
   );
