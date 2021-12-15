@@ -33,6 +33,7 @@
 
 #countries th:hover .sort-icon {
   visibility: visible;
+  cursor: pointer;
 }
 
 .search-row {
